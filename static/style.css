@@ -1,0 +1,41 @@
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2d89ef; 
+    color: white;
+    text-decoration: none; 
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.search-bar {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.categoria {
+    margin: 40px 0;
+}
+
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.card img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}

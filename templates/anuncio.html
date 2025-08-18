@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Loopay - Sua plataforma de compra e venda de produtos</title>
+</head>
+<body>
+    <h1>Cadastro de Anúncio de Produto</h1>
+    <form action="cadanuncio" method="post">
+        <div>
+            <p><label for="produto">Nome do Produto</label></p>
+            <p><input type="text" id="produto" name="produto"></p>
+        </div>
+        <div>
+            <p><label for="valor">Preço do Produto (R$)</label></p>
+            <p><input type="number" id="valor" name="valor" step="0.01" min="0"></p>
+        </div>
+        <div>
+            <p><label for="descricao">Descrição</label></p>
+            <textarea id="descricao" name="descricao" rows="4"></textarea>
+        </div>
+        <div>
+            <label for="imagem">Fotos do Produto</label><br>
+            <input type="file" id="imagem" name="imagem" accept="image/*">
+        </div>
+        <br>
+        <div>
+            <a href="#" class="btn">Cadastrar Anúncio</a>
+        </div>
+    </form>
+</body>
+</html>

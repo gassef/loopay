@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Loopay - Sua plataforma de compra e venda de produtos</title>
+</head>
+<body>
+    <h1>Responda perguntas sobre seus anúncios ou cadastre sua dúvida para um vendedor</h1>
+    <div>
+        <h2>Perguntas Recebidas</h2>
+        <h4>PERGUNTA 01</h4>
+        <p>Lorem ipsum dolor sit amet?</p>
+        <p>Nome Usuário - Produto XXXX</p>
+    </div>
+    <form>
+        <div>
+            <p><label for="resposta">Resposta</label></p>
+            <textarea id="resposta" name="resposta" rows="6"></textarea>
+        </div>
+        <br>
+        <div>
+            <a href="#" class="btn">Enviar Resposta</a>
+        </div>
+    </form>
+    <div>
+        <h4>PERGUNTA 02</h4>
+        <p>Lorem ipsum dolor sit amet?</p>
+        <p>Nome Usuário - Produto XXXX</p>
+    </div>
+    <form>
+        <div>
+            <p><label for="resposta">Resposta</label></p>
+            <textarea id="resposta" name="resposta" rows="6"></textarea>
+        </div>
+        <br>
+        <div>
+            <a href="#" class="btn">Enviar Resposta</a>
+        </div>
+    </form>
+    <div>
+        <h2>Cadastrar Pergunta para um Vendedor</h2>
+    </div>
+    <form>
+        <div>
+            <p><label for="codanuncio">Código do Anúncio</label></p>
+            <p><input type="number" id="codanuncio" name="codanuncio"></p>
+        </div>
+        <div>
+            <p><label for="pergunta">Escreva sua Pergunta</label></p>
+            <textarea id="pergunta" name="pergunta" rows="6"></textarea>
+        </div>
+        <br>
+        <div>
+            <a href="#" class="btn">Enviar Pergunta</a>
+        </div>
+    </form>
+</body>
+</html>
