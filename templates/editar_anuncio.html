@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Anúncio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Editar Anúncio</h1>
+    <form action="{{ url_for('editar_anuncio', id=anuncio.id) }}" method="post" enctype="multipart/form-data">
+        <p><label for="produto">Nome do Produto</label></p>
+        <p><input type="text" id="produto" name="produto" value="{{ anuncio.produto }}"></p>
+
+        <p><label for="valor">Preço do Produto (R$)</label></p>
+        <p><input type="number" id="valor" name="valor" value="{{ anuncio.valor }}" step="0.01" min="0"></p>
+
+        <p><label for="descricao">Descrição</label></p>
+        <textarea id="descricao" name="descricao" rows="4">{{ anuncio.descricao }}</textarea>
+
+        <p><label for="imagem">Substituir Imagem</label></p>
+        <input type="file" id="imagem" name="imagem" accept="image/*">
+        {% if anuncio.imagem %}
+            <p>Imagem atual:</p>
+            <img src="{{ url_for('static', filename='uploads/' + anuncio.imagem) }}" width="150">
+        {% endif %}
+
+        <p><input type="submit" value="Salvar Alterações" class="btn"></p>
+    </form>
+    <p><a href="{{ url_for('anuncio') }}">Voltar à lista de anúncios</a></p>
+</body>
+</html>

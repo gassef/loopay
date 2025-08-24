@@ -8,17 +8,53 @@
 </head>
 <body>
     <h1>Cadastro de Usuário</h1>
-    <form action="caduser" method="post">
-        <p><label for="user">Username</label></p>
-        <p><input type="text" id="user" name="user"></p>
+    <form action="{{ url_for('caduser') }}" method="post">
+        <p><label for="nome">Nome Usuário</label></p>
+        <p><input type="text" id="nome" name="nome"></p>
 
         <p><label for="email">E-mail</label></p>
         <p><input type="text" id="email" name="email"></p>
 
-        <p><label for="passwd">Password</label></p>
-        <p><input type="text" id="passwd" name="passwd"></p>
+        <p><label for="contato">Contato</label></p>
+        <p><input type="text" id="contato" name="contato"></p>
 
-        <a href="#" class="btn">Cadastrar</a>
+        <p><label for="end">Endereço</label></p>
+        <p><input type="text" id="end" name="end"></p>
+
+        <p><label for="senha">Senha</label></p>
+        <p><input type="text" id="senha" name="senha"></p>
+
+        <p><input type="submit" value="Cadastrar" class="btn"></p>
     </form>
+
+    <h1>Lista de {{titulo}}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Contato</th>
+                <th>Endereço</th>
+                <th>Senha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.nome }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.contato }}</td>
+                    <td>{{ usuario.end }}</td>
+                    <td>{{ usuario.senha }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_usuario', id=usuario.id) }}">Editar</a>
+                        <form action="{{ url_for('excluir_usuario', id=usuario.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este usuário?');">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
 </body>
 </html>

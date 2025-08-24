@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Cadastro de Anúncio de Produto</h1>
-    <form action="cadanuncio" method="post">
+    <form action="{{ url_for('cadanuncio') }}" method="post" enctype="multipart/form-data">
         <div>
             <p><label for="produto">Nome do Produto</label></p>
             <p><input type="text" id="produto" name="produto"></p>
@@ -27,8 +27,41 @@
         </div>
         <br>
         <div>
-            <a href="#" class="btn">Cadastrar Anúncio</a>
+            <input type="submit" value="Cadastrar Anúncio" class="btn">
         </div>
     </form>
+
+    <h1>Lista de Anúncios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Valor</th>
+                <th>Descrição</th>
+                <th>Imagem</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for anuncio in anuncios %}
+                <tr>
+                    <td>{{ anuncio.produto }}</td>
+                    <td>{{ anuncio.valor }}</td>
+                    <td>{{ anuncio.descricao }}</td>
+                    <td>
+                        {% if anuncio.imagem %}
+                            <img src="{{ url_for('static', filename='uploads/' + anuncio.imagem) }}" width="100">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('editar_anuncio', id=anuncio.id) }}">Editar</a>
+                        <form action="{{ url_for('excluir_anuncio', id=anuncio.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este anúncio?');">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
 </body>
 </html>
