@@ -3,58 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
     <title>Loopay - Sua plataforma de compra e venda de produtos</title>
 </head>
 <body>
-    <h1>Cadastro de Usuário</h1>
-    <form action="{{ url_for('caduser') }}" method="post">
-        <p><label for="nome">Nome Usuário</label></p>
-        <p><input type="text" id="nome" name="nome"></p>
+    <div class="container">
+        <div class="page-header">
+            <h1>Cadastro de Usuário</h1>
+        </div>
+        <form action="{{ url_for('caduser') }}" method="post">
+            <div class="form-group">
+                <p><label for="nome">Nome Usuário</label></p>
+                <p><input type="text" class="form-control" id="nome" name="nome"></p>
+            </div>
 
-        <p><label for="email">E-mail</label></p>
-        <p><input type="text" id="email" name="email"></p>
+            <div class="form-group">
+                <p><label for="email">E-mail</label></p>
+                <p><input type="text" class="form-control" id="email" name="email"></p>
+                <small id="emailHelp" class="form-text text-muted">Seu e-mail será utilizado para login.</small>
+            </div>
 
-        <p><label for="contato">Contato</label></p>
-        <p><input type="text" id="contato" name="contato"></p>
+            <div class="form-group">
+                <p><label for="contato">Contato</label></p>
+                <p><input type="text" class="form-control" id="contato" name="contato"></p>
+            </div>
 
-        <p><label for="end">Endereço</label></p>
-        <p><input type="text" id="end" name="end"></p>
+            <div class="form-group">
+                <p><label for="end">Endereço</label></p>
+                <p><input type="text" class="form-control" id="end" name="end"></p>
+            </div>
 
-        <p><label for="senha">Senha</label></p>
-        <p><input type="text" id="senha" name="senha"></p>
+            <div class="form-group">
+                <p><label for="senha">Senha</label></p>
+                <p><input type="text" class="form-control" id="senha" name="senha"></p>
+            </div>
 
-        <p><input type="submit" value="Cadastrar" class="btn"></p>
-    </form>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Aceito receber notificações via e-mail.</label>
+            </div>
 
-    <h1>Lista de {{titulo}}</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Contato</th>
-                <th>Endereço</th>
-                <th>Senha</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for usuario in usuarios %}
-                <tr>
-                    <td>{{ usuario.nome }}</td>
-                    <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.contato }}</td>
-                    <td>{{ usuario.end }}</td>
-                    <td>{{ usuario.senha }}</td>
-                    <td>
-                        <a href="{{ url_for('editar_usuario', id=usuario.id) }}">Editar</a>
-                        <form action="{{ url_for('excluir_usuario', id=usuario.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este usuário?');">
-                            <button type="submit">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}    
-        </tbody>
-    </table>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Lista de {{titulo}}</h1>
+        </div>
+            <table class="table table-striped table-responsive table-bordered">
+                <thead class="thread-default">
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Contato</th>
+                        <th>Endereço</th>
+                        <th>Senha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                        <tr>
+                            <td>{{ usuario.nome }}</td>
+                            <td>{{ usuario.email }}</td>
+                            <td>{{ usuario.contato }}</td>
+                            <td>{{ usuario.end }}</td>
+                            <td>{{ usuario.senha }}</td>
+                            <td>
+                                <a href="{{ url_for('editar_usuario', id=usuario.id) }}">Editar</a>
+                                <form action="{{ url_for('excluir_usuario', id=usuario.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este usuário?');">
+                                    <button type="submit">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}    
+                </tbody>
+            </table>
+    </div>
 </body>
 </html>

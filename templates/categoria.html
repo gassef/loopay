@@ -3,69 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
     <title>Loopay - Sua plataforma de compra e venda de produtos</title>
 </head>
 <body>
-    <h1>Visualizar Categorias de Produtos</h1>
-    <div>
-        <form class="search-bar" action="/buscar" method="get">
-            <input type="text" name="q" placeholder="Buscar categoria desejada" required>
-            <button type="submit">Buscar</button>
+    <div class="container">
+      <h1>Visualizar Categorias de Produtos</h1>
+      <div>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar produto em categoria" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
           </form>
+      </div>
     </div>
 
-    <section class="categoria">
-        <h2>Nome Categoria</h2>
-        <div class="produtos-grid">
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 1">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 2">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 3">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 4">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
+<div class="container">
+  <section class="categoria">
+    <h2>Nome Categoria 01</h2>
+    <div class="d-flex justify-content-between flex-wrap gap-3">
+      <div class="card" style="width: 18rem;">
+        <img src="../static/img/produto1.jpg" class="card-img-top" alt="foto produto">
+        <div class="card-body">
+          <h5 class="card-title">Nome Produto</h5>
+          <p class="card-text">Descrição do produto com informações como dimensões, cores, funcionalidades e outras necessidades.</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
         </div>
-      </section>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="../static/img/produto1.jpg" class="card-img-top" alt="foto produto">
+        <div class="card-body">
+          <h5 class="card-title">Nome Produto</h5>
+          <p class="card-text">Descrição do produto com informações como dimensões, cores, funcionalidades e outras necessidades.</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="../static/img/produto1.jpg" class="card-img-top" alt="foto produto">
+        <div class="card-body">
+          <h5 class="card-title">Nome Produto</h5>
+          <p class="card-text">Descrição do produto com informações como dimensões, cores, funcionalidades e outras necessidades.</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-      <section class="categoria">
-        <h2>Nome Categoria 02</h2>
-        <div class="produtos-grid">
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 1">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 2">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 3">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
-          <div class="card">
-            <img src="/static/img/produto1.jpg" alt="Produto 4">
-            <h3>Nome Produto</h3>
-            <p>R$00,00</p>
-          </div>
+
+<div class="container">
+  <section class="categoria">
+    <h2>Nome Categoria 02</h2>
+    <div class="d-flex justify-content-between flex-wrap gap-3">
+      <div class="card" style="width: 18rem;">
+        <img src="../static/img/produto1.jpg" class="card-img-top" alt="foto produto">
+        <div class="card-body">
+          <h5 class="card-title">Nome Produto</h5>
+          <p class="card-text">Descrição do produto com informações como dimensões, cores, funcionalidades e outras necessidades.</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
         </div>
-      </section>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="../static/img/produto1.jpg" class="card-img-top" alt="foto produto">
+        <div class="card-body">
+          <h5 class="card-title">Nome Produto</h5>
+          <p class="card-text">Descrição do produto com informações como dimensões, cores, funcionalidades e outras necessidades.</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="../static/img/produto1.jpg" class="card-img-top" alt="foto produto">
+        <div class="card-body">
+          <h5 class="card-title">Nome Produto</h5>
+          <p class="card-text">Descrição do produto com informações como dimensões, cores, funcionalidades e outras necessidades.</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 
 </body>
 </html>

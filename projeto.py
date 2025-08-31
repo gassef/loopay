@@ -7,7 +7,8 @@ from flask import url_for
 from flask import redirect
 from werkzeug.utils import secure_filename
 import os
-
+from flask_login import (LoginManager, login_user, login_required, logout_user, current_user)
+import hashlib
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://guilhermecunha:root@127.0.0.1/loopay_db"
@@ -21,6 +22,10 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 db = SQLAlchemy(app)
 
+app.secret_key = 'gabi130390'
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 class Usuario(db.Model):
     id = db.Column('id_usuario', db.Integer, primary_key=True)
@@ -37,6 +42,18 @@ class Usuario(db.Model):
         self.end = end
         self.senha = senha
 
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return str(self.id)    
+
 class Anuncio(db.Model):
     id = db.Column('id_anuncio', db.Integer, primary_key=True)
     produto = db.Column('produto', db.String(250))
@@ -50,16 +67,45 @@ class Anuncio(db.Model):
         self.descricao = descricao
         self.imagem = imagem
 
+@app.errorhandler(404)
+def paginanaoencontrada(error):
+    return render_template('404.html')
+
+@login_manager.user_loader
+def load_user(id):
+    return Usuario.query.get(id)
 
 @app.route("/")
+@login_required
 def index():
     return render_template('index.html')
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+
+        usuario = Usuario.query.filter_by(email=email, senha=senha).first()
+
+        if usuario:
+            login_user(usuario)
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('login'))
+    return render_template('login.html')
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route("/sobre")
 def sobre():
     return "<h1> Portal de vendas de artigos novos e usados</h1>"
 
 @app.route("/cad/usuario")
+@login_required
 def usuario():
     return render_template('usuario.html', usuarios= Usuario.query.all(), titulo="Usuario")
 
@@ -67,13 +113,13 @@ def usuario():
 # UPDATE 
 @app.route("/cad/usuario/editar/<int:id>", methods=['GET', 'POST'])
 def editar_usuario(id):
-    usuario = Usuario.query.get_or_404(id)
+    usuario = Usuario.query.get(id)
     if request.method == 'POST':
         usuario.nome = request.form['nome']
         usuario.email = request.form['email']
         usuario.contato = request.form['contato']
         usuario.end = request.form['end']
-        usuario.senha = request.form['senha']
+        usuario.senha = hashlib.sha512(request.form.get('senha').encode("utf-8")).hexdigest()
         db.session.commit()
         return redirect(url_for('usuario'))
     return render_template('editar_usuario.html', usuario=usuario)
@@ -88,6 +134,7 @@ def excluir_usuario(id):
 
 @app.route("/cad/caduser", methods=['POST'])
 def caduser():
+    senha_hash = hashlib.sha512(request.form.get('senha').encode("utf-8")).hexdigest()
     try:
         usuario = Usuario(request.form.get('nome'), 
                         request.form.get('email'), 
@@ -103,6 +150,7 @@ def caduser():
         return "Erro ao cadastrar usuário. Verifique os dados e tente novamente.", 500
 
 @app.route("/cad/anuncio")
+@login_required
 def anuncio():
     anuncios = Anuncio.query.all()
     return render_template('anuncio.html', anuncios=anuncios)
